@@ -1,4 +1,4 @@
 Agenda
 ======
 
-A simple Scheduler for Arduino software
+A simple Scheduler for Arduino
