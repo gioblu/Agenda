@@ -7,9 +7,8 @@
   Giovanni Blu Mitolo 2014 - gioscarab@gmail.com - www.gioblu.com
   This library has been released on the public domain.
 
-  Agenda agenda((micros, millis or seconds with no brackets and no quotes) time_measure);
+  Agenda agenda;
   Define an instance of agenda (choose a name, agenda is only an example)
-  and pass a time measure: seconds, millis or micros
 
   agenda.insert(function (name with no brackets), interval in millis, once (true or false));
   Add the passed function in the tasks list, if once is true, task
@@ -40,7 +39,7 @@ struct tasks_struct {
 tasks_struct _tasks[max_tasks];
 
 Agenda::Agenda() {
-  
+
 }
 
 int Agenda::insert(void (*task)(void), unsigned long timing, boolean once) {

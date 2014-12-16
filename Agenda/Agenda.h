@@ -10,15 +10,19 @@
   Agenda agenda;
   Define an instance of agenda (choose a name, agenda is only an example)
 
-  agenda.insert(function, interval in milliseconds);
-  Add the passed function in the tasks list. Returns a number
-  (the id of the task) or 0 if is impossible to add the task.
+  agenda.insert(function (name with no brackets), interval in millis, once (true or false));
+  Add the passed function in the tasks list, if once is true, task
+  will be executed once. Returns a number (the id of the task)
+  or -1 if is impossible to add the task.
 
   agenda.remove(id);
-  Removes the task from the tasks list that has the same id passed as parameter
+  Removes from tasks list the task that has the same id passed as parameter
 
   agenda.update();
-  Checks all scheduled tasks and executes which has to be executed. */
+  Checks all scheduled tasks and executes which has to be executed.
+
+  agenda.delay(time);
+  A delay function that avoid to affect the scheduler functionalities */
 
 #ifndef Agenda_h
   #define Agenda_h
