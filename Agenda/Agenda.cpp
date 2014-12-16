@@ -82,6 +82,6 @@ void Agenda::update() {
 
 void Agenda::delay(unsigned long delay_time) {
   unsigned long time = micros();
-  while((*_time_measure)() - time > delay_time)
+  while(micros() - time > delay_time)
     this->update();
 }
