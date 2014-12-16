@@ -30,21 +30,17 @@
 #include "Agenda.h"
 
 struct tasks_struct {
-	void (*execution)(void);
-	unsigned long timing;
-	unsigned long registration;
+  void (*execution)(void);
+  unsigned long timing;
+  unsigned long registration;
   boolean active;
   boolean execute_once;
 };
 
 tasks_struct _tasks[max_tasks];
 
-unsigned long seconds() {
-  return millis() / 1000;
-}
-
-Agenda::Agenda(unsigned long (*time_measure)(void) ) {
-  _time_measure = &time_measure;
+Agenda::Agenda() {
+  
 }
 
 int Agenda::insert(void (*task)(void), unsigned long timing, boolean once) {
@@ -52,12 +48,11 @@ int Agenda::insert(void (*task)(void), unsigned long timing, boolean once) {
     if(_tasks[i] == NULL) {
       _tasks[i].active = true;
       _tasks[i].execution = *task;
-      _tasks[i].registration = (*_time_measure)();
+      _tasks[i].registration = micros();
       _tasks[i].timing = timing;
       _tasks[i].once = once;
       return i;
     }
-
   return -1;
 }
 
@@ -78,7 +73,7 @@ void Agenda::remove(int id) {
 }
 
 void Agenda::update() {
-  unsigned long time = (*_time_measure)();
+  unsigned long time = micros();
   for(byte i = 0; i < max_tasks; i++)
     if((time - tasks[i].registration > _tasks[i].timing) && _tasks[i].active) {
       _tasks[i].execution();
@@ -87,7 +82,7 @@ void Agenda::update() {
 }
 
 void Agenda::delay(unsigned long delay_time) {
-  unsigned long time = (*_time_measure)();
+  unsigned long time = micros();
   while((*_time_measure)() - time > delay_time)
     this->update();
 }
