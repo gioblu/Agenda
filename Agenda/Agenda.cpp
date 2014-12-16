@@ -7,18 +7,23 @@
   Giovanni Blu Mitolo 2014 - gioscarab@gmail.com - www.gioblu.com
   This library has been released on the public domain.
 
-  Agenda agenda;
+  Agenda agenda((micros, millis or seconds with no brackets and no quotes) time_measure);
   Define an instance of agenda (choose a name, agenda is only an example)
+  and pass a time measure: seconds, millis or micros
 
-  agenda.insert(function, interval in milliseconds);
-  Add the passed function in the tasks list. Returns a number
-  (the id of the task) or 0 if is impossible to add the task.
+  agenda.insert(function (name with no brackets), interval in millis, once (true or false));
+  Add the passed function in the tasks list, if once is true, task
+  will be executed once. Returns a number (the id of the task)
+  or -1 if is impossible to add the task.
 
   agenda.remove(id);
-  Removes the task from the tasks list that has the same id passed as parameter
+  Removes from tasks list the task that has the same id passed as parameter
 
   agenda.update();
-  Checks all scheduled tasks and executes which has to be executed. */
+  Checks all scheduled tasks and executes which has to be executed.
+
+  agenda.delay(time);
+  A delay function that avoid to affect the scheduler functionalities */
 
 #include "WProgram.h"
 #include "WConstants.h"
@@ -34,16 +39,12 @@ struct tasks_struct {
 
 tasks_struct _tasks[max_tasks];
 
-Agenda::Agenda(char *time_measure) {
-  if(time_measure == 'microseconds') _time_measure = 'u';
-  if(time_measure == 'milliseconds') _time_measure = 'm';
-  if(time_measure == 'seconds') _time_measure = 's';
+unsigned long seconds() {
+  return millis() / 1000;
 }
 
-unsigned long Agenda::calculate_time() {
-  if(_time_measure == 'u') return micros();
-  if(_time_measure == 'm') return millis();
-  if(_time_measure == 's') return millis() / 1000;
+Agenda::Agenda(unsigned long (*time_measure)(void) ) {
+  _time_measure = &time_measure;
 }
 
 int Agenda::insert(void (*task)(void), unsigned long timing, boolean once) {
@@ -51,11 +52,13 @@ int Agenda::insert(void (*task)(void), unsigned long timing, boolean once) {
     if(_tasks[i] == NULL) {
       _tasks[i].active = true;
       _tasks[i].execution = *task;
-      _tasks[i].registration = calculate_time();
+      _tasks[i].registration = (*_time_measure)();
       _tasks[i].timing = timing;
       _tasks[i].once = once;
       return i;
     }
+
+  return -1;
 }
 
 void Agenda::activate(int id) {
@@ -75,7 +78,7 @@ void Agenda::remove(int id) {
 }
 
 void Agenda::update() {
-  unsigned long time = calculate_time();
+  unsigned long time = (*_time_measure)();
   for(byte i = 0; i < max_tasks; i++)
     if((time - tasks[i].registration > _tasks[i].timing) && _tasks[i].active) {
       _tasks[i].execution();
@@ -84,7 +87,7 @@ void Agenda::update() {
 }
 
 void Agenda::delay(unsigned long delay_time) {
-  unsigned long time = calculate_time();
-  while(calculate_time() - time < delay_time)
+  unsigned long time = (*_time_measure)();
+  while((*_time_measure)() - time > delay_time)
     this->update();
 }

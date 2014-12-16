@@ -34,20 +34,13 @@
 #define max_tasks 255
 #define agenda_version 01
 
-
 class Agenda {
-
   public:
-
-    Agenda(char *time_measure);
-
+    Agenda(unsigned long (*time_measure)(void));
     int insert(void (*task)(void), unsigned long timing, boolean once = false);
     void remove(int id);
     void update();
     void delay(unsigned long delay_time);
-
   private:
-
-    byte _time_measure; 
-
+    unsigned long  (*_time_measure)(void);
 };
