@@ -24,8 +24,6 @@
   agenda.delay(time);
   A delay function that avoid to affect the scheduler functionalities */
 
-#include "WProgram.h"
-#include "WConstants.h"
 #include "Agenda.h"
 
 struct tasks_struct {
