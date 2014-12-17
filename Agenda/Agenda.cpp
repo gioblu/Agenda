@@ -33,51 +33,56 @@ struct tasks_struct {
   unsigned long timing;
   unsigned long registration;
   boolean active;
-  boolean execute_once;
+  boolean once;
+  boolean empty;
 };
 
 tasks_struct _tasks[max_tasks];
 
 Agenda::Agenda() {
-
+  for(int i = 0; i < max_tasks; i++)
+    _tasks[i].empty = true;
 }
 
 int Agenda::insert(void (*task)(void), unsigned long timing, boolean once) {
   for(byte i = 0; i < max_tasks; i++)
-    if(_tasks[i] == NULL) {
+    if(_tasks[i].empty) {
       _tasks[i].active = true;
       _tasks[i].execution = *task;
       _tasks[i].registration = micros();
       _tasks[i].timing = timing;
       _tasks[i].once = once;
+      _tasks[i].empty = false;
       return i;
     }
   return -1;
 }
 
 void Agenda::activate(int id) {
-  _tasks[i].active = true;
+  _tasks[id].active = true;
 }
 
 void Agenda::deactivate(int id) {
-  _tasks[i].active = false;
+  _tasks[id].active = false;
 }
 
 void Agenda::remove(int id) {
-  _tasks[i].active = NULL;
-  _tasks[i].execution = NULL;
-  _tasks[i].registration = NULL;
-  _tasks[i].timing = NULL;
-  _tasks[i].once = NULL;
+  _tasks[id].active = NULL;
+  _tasks[id].execution = NULL;
+  _tasks[id].registration = NULL;
+  _tasks[id].timing = NULL;
+  _tasks[id].once = NULL;
+  _tasks[id].empty = true;
 }
 
 void Agenda::update() {
   unsigned long time = micros();
   for(byte i = 0; i < max_tasks; i++)
-    if((time - tasks[i].registration > _tasks[i].timing) && _tasks[i].active) {
-      _tasks[i].execution();
-      _tasks[i].registration = time;
-    }
+    if(!_tasks[i].empty && _tasks[i].active)
+      if(time - _tasks[i].registration > _tasks[i].timing) {
+        _tasks[i].execution();
+        _tasks[i].registration = time;
+      }
 }
 
 void Agenda::delay(unsigned long delay_time) {

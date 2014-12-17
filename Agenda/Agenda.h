@@ -35,7 +35,7 @@
   #endif
 #endif
 
-#define max_tasks 255
+#define max_tasks 20
 #define agenda_version 01
 
 class Agenda {
@@ -43,6 +43,8 @@ class Agenda {
     Agenda();
     int insert(void (*task)(void), unsigned long timing, boolean once = false);
     void remove(int id);
+    void activate(int id);
+    void deactivate(int id);
     void update();
     void delay(unsigned long delay_time);
   private:
