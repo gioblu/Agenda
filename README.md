@@ -28,7 +28,7 @@ If you want to deactivate the task you added:
 scheduler.deactivate(blink);
 ```
 
-To activate:
+If you want to activate the task:
 ```cpp
 scheduler.activate(blink);
 ```
