@@ -66,10 +66,6 @@ void Agenda::deactivate(int id) {
 
 void Agenda::remove(int id) {
   _tasks[id].active = NULL;
-  _tasks[id].execution = NULL;
-  _tasks[id].registration = NULL;
-  _tasks[id].timing = NULL;
-  _tasks[id].once = NULL;
   _tasks[id].empty = true;
 }
 
@@ -80,6 +76,8 @@ void Agenda::update() {
       if(time - _tasks[i].registration > _tasks[i].timing) {
         _tasks[i].execution();
         _tasks[i].registration = time;
+        if(_tasks[i].once)
+          this->remove(i);
       }
 }
 
