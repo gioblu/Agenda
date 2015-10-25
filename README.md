@@ -23,6 +23,11 @@ void blink() {
 int blink = scheduler.insert(blink, 1000000); // Blink every second 
 ```
 
+If you want to execute the task only once pass `true` as third parameter:
+```cpp
+scheduler.insert(blink, 1000000, true);
+```
+
 If you want to deactivate the task you added:
 ```cpp
 scheduler.deactivate(blink);
