@@ -1,28 +1,42 @@
+
 /* ___   ___   ___        __   ___
   |   | | __  |___ |\  | |  \ |   |
   |___| |   | |    | \ | |   ||___|
   |   | |___| |___ |  \| |__/ |   | version: 0.1
 
   Simple Scheduler library for Arduino
-  Giovanni Blu Mitolo 2014 - gioscarab@gmail.com - www.gioblu.com
-  This library has been released on the public domain.
+  Copyright (c) 2013-2015, Giovanni Blu Mitolo 2014
+  gioscarab@gmail.com - www.gioblu.com
+  All rights reserved.
 
-  Agenda agenda;
-  Define an instance of agenda (choose a name, agenda is only an example)
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are met:
+  - Redistributions of source code must retain the above copyright
+     notice, this list of conditions and the following disclaimer.
 
-  agenda.insert(function (name with no brackets), interval in millis, once (true or false));
-  Add the passed function in the tasks list, if once is true, task
-  will be executed once. Returns a number (the id of the task)
-  or -1 if is impossible to add the task.
+  -  Redistributions in binary form must reproduce the above copyright
+     notice, this list of conditions and the following disclaimer in the
+     documentation and/or other materials provided with the distribution.
 
-  agenda.remove(id);
-  Removes from tasks list the task that has the same id passed as parameter
+  -  All advertising materials mentioning features or use of this software
+     must display the following acknowledgement:
+     This product includes Agenda developed by Giovanni Blu Mitolo.
 
-  agenda.update();
-  Checks all scheduled tasks and executes which has to be executed.
+  -  Neither the name of Giovanni Blu Mitolo nor the
+     names of its contributors may be used to endorse or promote products
+     derived from this software without specific prior written permission.
 
-  agenda.delay(time);
-  A delay function that avoid to affect the scheduler functionalities */
+  This software is provided by the copyright holders and contributors "as is" 
+  and any express or implied warranties, including, but not limited to, the 
+  implied warranties of merchantability and fitness for a particular purpose 
+  are disclaimed. In no event shall the copyright holder or contributors be 
+  liable for any direct, indirect, incidental, special, exemplary, or 
+  consequential damages (including, but not limited to, procurement of 
+  substitute goods or services; loss of use, data, or profits; or business 
+  interruption) however caused and on any theory of liability, whether in 
+  contract, strict liability, or tort (including negligence or otherwise) 
+  arising in any way out of the use of this software, even if advised of 
+  the possibility of such damage. */
 
 #include "Agenda.h"
 
