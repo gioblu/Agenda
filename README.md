@@ -43,6 +43,15 @@ If you want to completely remove it:
 scheduler.remove(blink);
 ```
 
+If you need a delay in your code use this functions:
+```cpp
+// Delay of 1 second while executing tasks when necessary
+scheduler.delay(1000); 
+
+// Delay of 100 microseconds while executing tasks when necessary
+scheduler.delay_microseconds(1000); 
+```
+
 ---
 
 Copyright (c) 2013-2015, Giovanni Blu Mitolo
