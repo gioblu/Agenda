@@ -46,6 +46,7 @@ class Agenda {
     void activate(int id);
     void deactivate(int id);
     void update();
-    void delay(unsigned long delay_time);
+    void delay(unsigned long delay);
+    void delay_microseconds(unsigned long delay);
   private:
 };

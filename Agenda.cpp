@@ -81,8 +81,14 @@ void Agenda::update() {
       }
 }
 
-void Agenda::delay(unsigned long delay_time) {
+void Agenda::delay(unsigned long delay) {
+  unsigned long time = millis();
+  while(millis() - time > delay)
+    this->update();
+}
+
+void Agenda::delay_microseconds(unsigned long delay) {
   unsigned long time = micros();
-  while(micros() - time > delay_time)
+  while(micros() - time > delay)
     this->update();
 }
