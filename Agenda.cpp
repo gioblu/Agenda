@@ -98,7 +98,7 @@ void Agenda::update() {
 void Agenda::delay(unsigned long delay) {
   unsigned long time = millis();
   // Freek condition used to avoid millis() overflow
-  while(!(millis() - time > delay) && true) {
+  while(!(millis() - time > delay)) {
     this->update();
     yield();
   }
@@ -107,7 +107,7 @@ void Agenda::delay(unsigned long delay) {
 void Agenda::delay_microseconds(unsigned long delay) {
   unsigned long time = micros();
   // Freek condition used to avoid micros() overflow
-  while(!(micros() - time > delay) && true)  {
+  while(!(micros() - time > delay))  {
     this->update();
     yield();
   }
