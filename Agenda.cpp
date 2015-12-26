@@ -26,16 +26,16 @@
      names of its contributors may be used to endorse or promote products
      derived from this software without specific prior written permission.
 
-  This software is provided by the copyright holders and contributors "as is" 
-  and any express or implied warranties, including, but not limited to, the 
-  implied warranties of merchantability and fitness for a particular purpose 
-  are disclaimed. In no event shall the copyright holder or contributors be 
-  liable for any direct, indirect, incidental, special, exemplary, or 
-  consequential damages (including, but not limited to, procurement of 
-  substitute goods or services; loss of use, data, or profits; or business 
-  interruption) however caused and on any theory of liability, whether in 
-  contract, strict liability, or tort (including negligence or otherwise) 
-  arising in any way out of the use of this software, even if advised of 
+  This software is provided by the copyright holders and contributors "as is"
+  and any express or implied warranties, including, but not limited to, the
+  implied warranties of merchantability and fitness for a particular purpose
+  are disclaimed. In no event shall the copyright holder or contributors be
+  liable for any direct, indirect, incidental, special, exemplary, or
+  consequential damages (including, but not limited to, procurement of
+  substitute goods or services; loss of use, data, or profits; or business
+  interruption) however caused and on any theory of liability, whether in
+  contract, strict liability, or tort (including negligence or otherwise)
+  arising in any way out of the use of this software, even if advised of
   the possibility of such damage. */
 
 #include "Agenda.h"
@@ -98,7 +98,7 @@ void Agenda::update() {
 void Agenda::delay(unsigned long delay) {
   unsigned long time = millis();
   // Freek condition used to avoid millis() overflow
-  while(!(millis() - time > delay)) {
+  while(!((unsigned long)(millis() - time) > delay)) {
     this->update();
     yield();
   }
@@ -107,7 +107,7 @@ void Agenda::delay(unsigned long delay) {
 void Agenda::delay_microseconds(unsigned long delay) {
   unsigned long time = micros();
   // Freek condition used to avoid micros() overflow
-  while(!(micros() - time > delay))  {
+  while(!((unsigned long)(micros() - time) > delay))  {
     this->update();
     yield();
   }
