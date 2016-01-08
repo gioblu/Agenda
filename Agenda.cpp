@@ -5,7 +5,7 @@
   |   | |___| |___ |  \| |__/ |   | version: 0.1
 
   Simple Scheduler library for Arduino
-  Copyright (c) 2013-2015, Giovanni Blu Mitolo 2014
+  Copyright (c) 2013-2015, Giovanni Blu Mitolo 
   gioscarab@gmail.com - www.gioblu.com
   All rights reserved.
 
