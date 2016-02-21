@@ -84,6 +84,7 @@ void Agenda::remove(int id) {
 }
 
 void Agenda::update() {
+  // Save time once to reduce execution time
   unsigned long time = micros();
   for(byte i = 0; i < max_tasks; i++)
     if(!_tasks[i].empty && _tasks[i].active)
@@ -92,6 +93,9 @@ void Agenda::update() {
         _tasks[i].execution();
         if(_tasks[i].once)
           this->remove(i);
+        time = micros(); 
+        /* Bring time variable back coherent after 
+           task execution */ 
       }
 }
 
