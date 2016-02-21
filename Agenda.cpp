@@ -88,7 +88,6 @@ void Agenda::update() {
   for(byte i = 0; i < max_tasks; i++)
     if(!_tasks[i].empty && _tasks[i].active)
       if(time - _tasks[i].registration > _tasks[i].timing) {
-        _tasks[i].execution();
         _tasks[i].registration = time;
         if(_tasks[i].once)
           this->remove(i);
