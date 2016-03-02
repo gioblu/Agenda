@@ -2,10 +2,10 @@
 /* ___   ___   ___        __   ___
   |   | | __  |___ |\  | |  \ |   |
   |___| |   | |    | \ | |   ||___|
-  |   | |___| |___ |  \| |__/ |   | version: 0.1
+  |   | |___| |___ |  \| |__/ |   | version: 1.0
 
   Simple Scheduler library for Arduino
-  Copyright (c) 2013-2015, Giovanni Blu Mitolo 
+  Copyright (c) 2013-2016, Giovanni Blu Mitolo 
   gioscarab@gmail.com - www.gioblu.com
   All rights reserved.
 
