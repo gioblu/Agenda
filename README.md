@@ -1,4 +1,4 @@
-Agenda
+Agenda 1.0 Stable
 ======
 
 There are a lot of scheduler implementations for Arduino on github, I have developed Agenda because I needed an overflow proof implementation non interrupt-driven I could trust for HAB (High Altitude Balloon) launches and home automation experiments. Agenda is immune to `micros()` overflow and it is designed to work rock solid. The big PROs are the high resilience, compatibility with any sort of library and configurable memory consumption. Consider that Agenda, not using interrupts, can likely overshoot requested delays and scheduled executions with long duration tasks.
