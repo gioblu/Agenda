@@ -1,7 +1,7 @@
 Agenda 1.0 Stable
 ======
 
-There are a lot of scheduler implementations for Arduino on github, I have developed Agenda because I needed an overflow proof implementation non interrupt-driven I could trust for HAB (High Altitude Balloon) launches and home automation experiments. Agenda is immune to `micros()` overflow and it is designed to work rock solid. The big PROs are the high resilience, compatibility with any sort of library and configurable memory consumption. Consider that Agenda, not using interrupts, can likely overshoot requested delays and scheduled executions with long duration tasks.
+There are a lot of scheduler implementations for Arduino on github, I have developed Agenda because I needed an overflow proof implementation non interrupt-driven I could trust for HAB (High Altitude Balloon) launches and home automation experiments. Agenda is immune to `micros()` overflow and it is designed to work rock solid. The big PROs are the high resilience, compatibility with any sort of library and configurable memory consumption. Consider that Agenda, not using interrupts, can likely overshoot requested delays and scheduled executions with long duration tasks; to avoid this structure intelligently your code.
 
 First you have to instantiate the Agenda object:
 ```cpp
@@ -58,7 +58,7 @@ scheduler.delay_microseconds(100);
   |   | | __  |___ |\  | |  \ |   |
   |___| |   | |    | \ | |   ||___|
   |   | |___| |___ |  \| |__/ |   | version: 1.0
-  Simple Scheduler library for Arduino
+  Scheduler library for Arduino
   Copyright (c) 2013-2016, Giovanni Blu Mitolo 
   gioscarab@gmail.com - www.gioblu.com
   All rights reserved.
@@ -73,7 +73,7 @@ scheduler.delay_microseconds(100);
   -  All advertising materials mentioning features or use of this software
      must display the following acknowledgement:
      "Timed by Agenda, developed by Giovanni Blu Mitolo"
-  -  Neither the name of Giovanni Blu Mitolo nor the
+  -  Neither the name of Agenda nor the
      names of its contributors may be used to endorse or promote products
      derived from this software without specific prior written permission.
   
