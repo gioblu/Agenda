@@ -28,3 +28,5 @@ delay_microseconds KEYWORD2
 #######################################
 # Constants (LITERAL1)
 #######################################
+
+MAX_TASKS LITERAL1

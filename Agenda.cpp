@@ -3,9 +3,8 @@
   |   | | __  |___ |\  | |  \ |   |
   |___| |   | |    | \ | |   ||___|
   |   | |___| |___ |  \| |__/ |   | version: 1.0
-
-  Simple Scheduler library for Arduino
-  Copyright (c) 2013-2016, Giovanni Blu Mitolo 
+  Scheduler library for Arduino
+  Copyright (c) 2013-2016, Giovanni Blu Mitolo
   gioscarab@gmail.com - www.gioblu.com
   All rights reserved.
 
@@ -13,16 +12,13 @@
   modification, are permitted provided that the following conditions are met:
   - Redistributions of source code must retain the above copyright
      notice, this list of conditions and the following disclaimer.
-
   -  Redistributions in binary form must reproduce the above copyright
      notice, this list of conditions and the following disclaimer in the
      documentation and/or other materials provided with the distribution.
-
   -  All advertising materials mentioning features or use of this software
      must display the following acknowledgement:
-     This product includes Agenda developed by Giovanni Blu Mitolo.
-
-  -  Neither the name of Giovanni Blu Mitolo nor the
+     "Timed by Agenda, developed by Giovanni Blu Mitolo"
+  -  Neither the name of Agenda nor the
      names of its contributors may be used to endorse or promote products
      derived from this software without specific prior written permission.
 
@@ -49,15 +45,15 @@ struct tasks_struct {
   boolean empty;
 };
 
-tasks_struct _tasks[max_tasks];
+tasks_struct _tasks[MAX_TASKS];
 
 Agenda::Agenda() {
-  for(int i = 0; i < max_tasks; i++)
+  for(int i = 0; i < MAX_TASKS; i++)
     _tasks[i].empty = true;
 }
 
 int Agenda::insert(void (*task)(void), unsigned long timing, boolean once) {
-  for(byte i = 0; i < max_tasks; i++)
+  for(byte i = 0; i < MAX_TASKS; i++)
     if(_tasks[i].empty) {
       _tasks[i].active = true;
       _tasks[i].execution = *task;
@@ -86,16 +82,16 @@ void Agenda::remove(int id) {
 void Agenda::update() {
   // Save time once to reduce execution time
   unsigned long time = micros();
-  for(byte i = 0; i < max_tasks; i++)
+  for(byte i = 0; i < MAX_TASKS; i++)
     if(!_tasks[i].empty && _tasks[i].active)
       if(time - _tasks[i].registration > _tasks[i].timing) {
         _tasks[i].registration = time;
         _tasks[i].execution();
         if(_tasks[i].once)
           this->remove(i);
-        time = micros(); 
-        /* Bring time variable back coherent after 
-           task execution */ 
+        time = micros();
+        /* Bring time variable back coherent after
+           task execution */
       }
 }
 
