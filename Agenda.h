@@ -45,8 +45,7 @@
   #endif
 #endif
 
-#define max_tasks 20
-#define agenda_version 01
+#define MAX_TASKS 20
 
 class Agenda {
   public:
