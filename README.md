@@ -3,7 +3,7 @@ Agenda 1.0 Stable
 
 There are a lot of scheduler implementations for Arduino on github, I have developed Agenda because I needed an overflow proof implementation non interrupt-driven I could trust for HAB (High Altitude Balloon) launches and home automation experiments. Agenda is immune to `micros()` overflow and it is designed to work rock solid. The big PROs are the high resilience, compatibility with any sort of library and configurable memory consumption. Consider that Agenda, not using interrupts, can likely overshoot requested delays and scheduled executions with long duration tasks. 
 
-I have a strong belief, developed with a lot of experience with Arduino compatible embedded systems, that is better to handle a possible delay in task execution (using a non interrupt-driven system like Agenda), than having always chances to get an interruption in the middle of an execution, that generally leads to execution corruption and unexpected bugs, for example in a strict timed scenario like bit-banging or sensor reading task. 
+I have developed a strong belief, after a lot of experience with Arduino compatible embedded systems, that is better to handle a possible delay in task execution (using a non interrupt-driven system like Agenda), than having always chances to get an interruption in the middle of an execution, that generally leads to execution corruption and unexpected bugs, for example in a strict timed scenario like bit-banging or sensor reading task. 
 
 First you have to instantiate the Agenda object:
 ```cpp
