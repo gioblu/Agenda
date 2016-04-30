@@ -97,11 +97,7 @@ void Agenda::update() {
 
 void Agenda::delay(unsigned long delay) {
   unsigned long time = millis();
-  /* Freek condition used to avoid millis() overflow
-     and to avoid ESP8266 internal 32bit typecast bug
-     (https://github.com/gioblu/Agenda/issues/1)
-     thanks to lucky */
-  while(!((unsigned long)(millis() - time) > delay)) {
+  while((unsigned long)(delay + time) > millis()) {
     this->update();
     yield();
   }
@@ -109,11 +105,7 @@ void Agenda::delay(unsigned long delay) {
 
 void Agenda::delay_microseconds(unsigned long delay) {
   unsigned long time = micros();
-  /* Freek condition used to avoid millis() overflow
-     and to avoid ESP8266 internal 32bit typecast bug
-     (https://github.com/gioblu/Agenda/issues/1)
-     thanks to lucky */
-  while(!((unsigned long)(micros() - time) > delay))  {
+  while((unsigned long)(delay + time) > micros())  {
     this->update();
     yield();
   }
