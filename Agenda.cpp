@@ -7,7 +7,7 @@
   Copyright (c) 2013-2016, Giovanni Blu Mitolo
   gioscarab@gmail.com - www.gioblu.com
   All rights reserved.
-  
+
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at
@@ -83,7 +83,7 @@ void Agenda::update() {
 
 void Agenda::delay(unsigned long delay) {
   unsigned long time = millis();
-  while((unsigned long)(delay + time) > millis()) {
+  while((unsigned long)(millis() - time) < delay) {
     this->update();
     yield();
   }
@@ -91,7 +91,7 @@ void Agenda::delay(unsigned long delay) {
 
 void Agenda::delay_microseconds(unsigned long delay) {
   unsigned long time = micros();
-  while((unsigned long)(delay + time) > micros())  {
+  while((unsigned long)(micros() - time) < delay) {
     this->update();
     yield();
   }
