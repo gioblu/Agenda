@@ -17,8 +17,8 @@ activate	KEYWORD2
 deactivate	KEYWORD2
 remove	KEYWORD2
 insert	KEYWORD2
-delay   KEYWORD2
-delay_microseconds KEYWORD2
+delay	KEYWORD2
+delay_microseconds	KEYWORD2
 
 #######################################
 # Instances (KEYWORD2)
@@ -29,4 +29,4 @@ delay_microseconds KEYWORD2
 # Constants (LITERAL1)
 #######################################
 
-MAX_TASKS LITERAL1
+MAX_TASKS	LITERAL1
